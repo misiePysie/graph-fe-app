@@ -1,0 +1,27 @@
+body{
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding:0;
+}
+
+#example-module{
+    margin:10px;
+    padding: 16px;
+    display:flex;
+    text-align: center;
+    flex-direction: column;
+    color: #028C6A;
+    border: 1px solid #003E19;
+    background-color: #d1ede1;
+}
+
+#example-module2{
+    margin:10px;
+    padding: 16px;
+    display:flex;
+    text-align: center;
+    flex-direction: column;
+    color: #BD8E62;
+    border: 1px solid #370D00;
+    background-color: #D5D2C1;
+}

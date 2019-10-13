@@ -1,22 +1,8 @@
 import * as css from './style.css';
 import * as vis from 'vis-network';
 import http from "../../services/httpService";
-
-// temporary mock data
-const nodesMockData = [
-  {id:'./src/1', label: 'Node 1'},
-  {id:'./src/2', label: 'Node 2'},
-  {id:'./src/3', label: 'Node 3'},
-  {id:'./src/4', label: 'Node 4'},
-  {id:'./src/5', label: 'Node 5'}
-]
-const edgesMockData = [
-  {from: './src/1', to: './src/3'},
-  {from: './src/1', to: './src/2'},
-  {from: './src/2', to: './src/4'},
-  {from: './src/2', to: './src/5'},
-  {from: './src/3', to: './src/3'}
-]
+import { mockData } from './mockData';
+import { transformGraphData } from './helpers';
 
 async function getProjectStructureData(){
   return await http.get('/path-to-api');
@@ -32,7 +18,29 @@ const populateGraph = (nodesData, edgesData) => {
     edges: edges
   };
 
-  const options = {};
+  const options = {
+    nodes: {
+      font: {
+        size: 8
+      },
+      borderWidth: 0.8
+    },
+    edges: {
+      font: {
+        align: "top"
+      },
+      arrows: {
+        to: { enabled: true, scaleFactor: 1, type: "arrow" }
+      }
+    },
+    interaction: {
+      tooltipDelay: 200,
+      hover: true
+    },
+    physics: {
+      enabled: false
+    }
+};
   const network = new vis.Network(container, data, options);
 }
 
@@ -46,7 +54,8 @@ export const graphNetworkScript = () => {
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);
-          populateGraph(nodesMockData, edgesMockData); // TODO: this display graph onError should be removed when api will be released
+          const {nodesData, edgesData} = transformGraphData(mockData);
+          populateGraph(nodesData, edgesData); // TODO: this display graph onError should be removed when api will be released
       })
   }
 }

@@ -1,0 +1,14 @@
+import * as css from './style.css';
+
+const header = (id, title, content) => {
+    return(
+        `
+        <div id=${id} class="header-wrapper">
+            <h2>${title}</h1>
+            <h4> ${content} </h2>
+        </div>
+           `
+    );
+} 
+
+export default header;

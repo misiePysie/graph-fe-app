@@ -1,0 +1,15 @@
+.footer-wrapper{
+    bottom:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top:8px;
+    padding: 16px;
+    color: #370D00;
+    border: 1px solid #370D00;
+    background-color: #D5D2C1;
+}
+
+.footer-about{
+
+}

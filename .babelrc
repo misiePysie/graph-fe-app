@@ -4,5 +4,12 @@
       "useBuiltIns": "entry",
       "debug":true
     }]
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
   ]
 }

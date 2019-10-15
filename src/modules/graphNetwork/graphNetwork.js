@@ -66,10 +66,9 @@ export const graphNetworkScript = () => {
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);
-          // const {nodesData, edgesData} = transformGraphData(mockData);
-          // console.log('edges',edgesData);
-          // populateGraph(nodesData, edgesData); 
-          // TODO: this display graph onError should be removed when api will be released
+        const {nodesData, edgesData} = transformGraphData(mockData);
+        console.log('edges',edgesData);
+        populateGraph(nodesData, edgesData);
       })
   }
 }

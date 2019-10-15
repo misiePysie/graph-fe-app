@@ -4,8 +4,24 @@ import http from "../../services/httpService";
 import { mockData } from './mockData';
 import { transformGraphData } from './helpers';
 
+const srcRegex = `/\^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$/`; // TODO: Validation 
+
 async function getProjectStructureData(){
-  return await http.get('/path-to-api');
+
+  const frontedSrc = document.querySelector("#frontendAppPath").value;
+  const backendSrc = document.querySelector("#backendAppPath").value;
+
+  const valid = frontedSrc.match(srcRegex) && backendSrc.match(srcRegex);
+
+  // if(!valid){
+  //   alert('Co żeś ty mi podał?!')
+  //   return
+  // } 
+
+  console.log(frontedSrc, backendSrc)
+
+  const srcData = {backendSrc, frontedSrc}
+  return await http.get('/dir', srcData);
 }
 
 const populateGraph = (nodesData, edgesData) => {
@@ -50,9 +66,10 @@ export const graphNetworkScript = () => {
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);
-          const {nodesData, edgesData} = transformGraphData(mockData);
-          console.log('edges',edgesData);
-          populateGraph(nodesData, edgesData); // TODO: this display graph onError should be removed when api will be released
+          // const {nodesData, edgesData} = transformGraphData(mockData);
+          // console.log('edges',edgesData);
+          // populateGraph(nodesData, edgesData); 
+          // TODO: this display graph onError should be removed when api will be released
       })
   }
 }
@@ -60,7 +77,9 @@ export const graphNetworkScript = () => {
 const graphNetwork = () => `
 <div id="graphWrapper">
 <div id="graphOptionsWrapper">
-<div> <h4>Graph options:</h4> </div>
+<div> <h4>Options:</h4> </div>
+Frontend App path: <input type="text" id="frontendAppPath"><br>
+Backend App path: <input type="text" id="backendAppPath" name="fname"><br>
 <button id="getProjectStructure"> Get project structure </button>
 </div>
     <div id="projectGraph"></div>

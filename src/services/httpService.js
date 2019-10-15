@@ -9,7 +9,7 @@ if(process.env.APP_API_URI){
 axios.interceptors.response.use((response) => {
   return response;
 }, (error) => {
-
+alert(error)
   // Do something with response error
   const expectedError =
     error.response &&
@@ -17,7 +17,6 @@ axios.interceptors.response.use((response) => {
     error.response.status < 500;
 
   if (!expectedError) {
-    alert("An unexpected error occurred with connection.");
   } else {
     switch (error.response.status) {
       case 401 :   alert("You are not authorized!");
@@ -27,7 +26,7 @@ axios.interceptors.response.use((response) => {
       case 404 :    alert("api path not exist!");
         break;
       default:
-        alert("An error occurred.");
+        alert(`An error occurred. ${error}`);
     }
   }
   return Promise.reject(error);

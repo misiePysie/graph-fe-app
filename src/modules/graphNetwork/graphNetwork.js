@@ -33,10 +33,6 @@ const populateGraph = (nodesData, edgesData) => {
         to: { enabled: true, scaleFactor: 1, type: "arrow" }
       }
     },
-    interaction: {
-      tooltipDelay: 200,
-      hover: true
-    },
     physics: {
       enabled: false
     }
@@ -55,6 +51,7 @@ export const graphNetworkScript = () => {
       }, (error)=>{
         console.error(error);
           const {nodesData, edgesData} = transformGraphData(mockData);
+          console.log('edges',edgesData);
           populateGraph(nodesData, edgesData); // TODO: this display graph onError should be removed when api will be released
       })
   }

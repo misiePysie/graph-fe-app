@@ -4,8 +4,8 @@ const header = (id, title, content) => {
     return(
         `
         <div id=${id} class="header-wrapper">
-            <h2>${title}</h1>
-            <h4> ${content} </h2>
+            <h2>${title}</h2>
+            <h4> ${content} </h4>
         </div>
            `
     );

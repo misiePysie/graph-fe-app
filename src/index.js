@@ -9,8 +9,8 @@ app.innerHTML = `
 <div id="app">
     ${header(
         'header-project-structure',
-        'Misie Pysie struktura projektu',
-        'Tutaj oPis projektu'
+        'GRAPH',
+        'by Misie Pysie'
     )}
     ${graphNetwork()}
 

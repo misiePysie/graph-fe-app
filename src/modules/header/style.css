@@ -5,7 +5,7 @@
     display:flex;
     text-align: center;
     flex-direction: column;
-    color: #370D00;
-    border: 1px solid #370D00;
-    background-color: #D5D2C1;
+    color: #2998ff;
+    background-color: #393e46;
+    font-size: 25px;
 }

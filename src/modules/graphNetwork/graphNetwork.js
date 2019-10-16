@@ -36,21 +36,26 @@ const populateGraph = (nodesData, edgesData) => {
 
   const options = {
     nodes: {
+      shape: 'dot',
+      color: "#6dc5ff",
       font: {
-        size: 8
+        size: 8,
+        color: '#ffffff'
       },
-      borderWidth: 0.8
+      borderWidth: 8
     },
     edges: {
+      color: "#2998ff",
       font: {
-        align: "top"
+        align: "top",
+        color: "#ffffff"
       },
       arrows: {
         to: { enabled: true, scaleFactor: 1, type: "arrow" }
       }
     },
     physics: {
-      enabled: false
+      enabled: true
     }
 };
   const network = new vis.Network(container, data, options);

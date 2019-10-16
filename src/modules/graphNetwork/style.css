@@ -1,8 +1,11 @@
 #projectGraph{
     width: 60%;
     height: 550px;
-    border: 1px solid lightgray;
-    background-color: rgb(219, 246, 237)
+    /* background-color: rgb(219, 246, 237); */
+    background-color: #393e46;
+    border-radius: 30px;
+    /* box-shadow: 0 15px 40px #7ed56f; */
+    outline: none;
   }
 
  #graphWrapper{
@@ -11,23 +14,31 @@
   }
 
   #getProjectStructure{
-    background-color: rgb(6, 86, 190);
+    background-color: #fff;
     border: none;
-    color: white;
+    color: #2998ff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 30px;
 }
 
 #graphOptionsWrapper{
-    background-color:rgb(175, 250, 225);
+    /* background-color: #00adb5; */
+    background-image: linear-gradient(to bottom, #6dc5ff, #2998ff);
     display: flex;
     flex-direction: column;
+    margin-right: 30px;
+    padding: 10px;
+    border-radius: 30px;
+    padding-top: 120px;
+    box-shadow: 3px 3px 30px #000;
   }
 
 #getProjectStructure:hover{
-    background-color: rgb(42, 110, 199); /* Green */
+    background-color: #2998ff; /* Green */
+    color: white;
     cursor: pointer;
 }

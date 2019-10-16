@@ -2,17 +2,12 @@ import * as css from './style.css';
 import * as vis from 'vis-network';
 import http from "../../services/httpService";
 import { mockData, mockData2 } from './mockData';
-import { transformGraphData } from './helpers';
+import { transformGraphData, pathReformer } from './helpers';
 
 async function getProjectStructureData(){
-
   const frontendSrc = document.querySelector("#frontendAppPath").value;
   const backendSrc = document.querySelector("#backendAppPath").value;
-
-  console.log(frontendSrc, backendSrc)
-
   const srcData = {backendSrc, frontendSrc}
-  console.log('srcData',srcData);
   return await http.post('/dir', srcData);
 }
 

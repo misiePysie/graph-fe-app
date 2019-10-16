@@ -17,3 +17,4 @@ export const transformGraphData = (data) => {
 
    return {nodesData: nodesDataTransformed, edgesData: edgesDataTransformed}
 }
+export const pathReformer = (path) =>  path.split("\\").join("\\\\");

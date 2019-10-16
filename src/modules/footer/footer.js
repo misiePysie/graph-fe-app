@@ -1,6 +1,6 @@
 import * as css from './style.css';
 
-const footer = (authors, links, about) => {
+const footer = (authors, about) => {
     return(
         `
         <div class="footer-wrapper">
@@ -9,12 +9,6 @@ const footer = (authors, links, about) => {
                 ${authors.map(author=>{
                     return`<h5>${author}</h5>`
                 }).join('')}
-            </div>
-            <div class="footer-links">
-                <h2>Linki</h2>
-            ${links.map(link=>{
-                return`<p><a href=${link.to}>${link.label}</a></p>`
-            }).join('')}
             </div>
             <div class="footer-about">
                 <h2>O projekcie</h2>

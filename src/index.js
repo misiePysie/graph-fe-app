@@ -15,9 +15,8 @@ app.innerHTML = `
     ${graphNetwork()}
 
     ${footer(
-        ['autor1','autor2','autor3','itd'],
-        [{to:'#', label:'link1'},{to:'#', label:'link2'},{to:'#', label:'link3'}, ],
-        'tutaj jakis opisik może'
+        ['Karol Żebrowski','Karol Wyrzykowski','Norbert Wójtowicz','Gabriela Śreniawska','Karolina Szykuła','Dominik Strama'],
+        'Aplikacja ma za zadanie wyświetlenie połączeń występujących pomiędzy jej własnymi plikami źródłowymi w postaci grafu'
     )}
 </div>
 `

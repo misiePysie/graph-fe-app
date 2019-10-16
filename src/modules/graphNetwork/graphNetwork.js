@@ -1,27 +1,19 @@
 import * as css from './style.css';
 import * as vis from 'vis-network';
 import http from "../../services/httpService";
-import { mockData } from './mockData';
+import { mockData, mockData2 } from './mockData';
 import { transformGraphData } from './helpers';
-
-const srcRegex = `/\^(?:[a-zA-Z]\:|\\\\[\w\.]+\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$/`; // TODO: Validation 
 
 async function getProjectStructureData(){
 
-  const frontedSrc = document.querySelector("#frontendAppPath").value;
+  const frontendSrc = document.querySelector("#frontendAppPath").value;
   const backendSrc = document.querySelector("#backendAppPath").value;
 
-  const valid = frontedSrc.match(srcRegex) && backendSrc.match(srcRegex);
+  console.log(frontendSrc, backendSrc)
 
-  // if(!valid){
-  //   alert('Co żeś ty mi podał?!')
-  //   return
-  // } 
-
-  console.log(frontedSrc, backendSrc)
-
-  const srcData = {backendSrc, frontedSrc}
-  return await http.get('/dir', srcData);
+  const srcData = {backendSrc, frontendSrc}
+  console.log('srcData',srcData);
+  return await http.post('/dir', srcData);
 }
 
 const populateGraph = (nodesData, edgesData) => {
@@ -36,26 +28,23 @@ const populateGraph = (nodesData, edgesData) => {
 
   const options = {
     nodes: {
-      shape: 'dot',
+      //shape: 'dot',
       color: "#6dc5ff",
-      font: {
-        size: 8,
-        color: '#ffffff'
-      },
-      borderWidth: 8
+      font: "16px arial white",
+      borderWidth: 1
     },
     edges: {
       color: "#2998ff",
       font: {
-        align: "top",
-        color: "#ffffff"
+        color: "#ffffff",
+        size: 16,
       },
       arrows: {
-        to: { enabled: true, scaleFactor: 1, type: "arrow" }
+        to: { enabled: true, scaleFactor: 0.5, type: "arrow" }
       }
     },
     physics: {
-      enabled: true
+      enabled: false
     }
 };
   const network = new vis.Network(container, data, options);
@@ -66,7 +55,7 @@ export const graphNetworkScript = () => {
 
   graphNetworkButton.onclick = () => {
       getProjectStructureData().then((response)=>{
-        const {nodesData, edgesData} = response.data;
+        const {nodesData, edgesData} = transformGraphData(response.data);
         console.log(response.data);
         populateGraph(nodesData, edgesData);
       }, (error)=>{

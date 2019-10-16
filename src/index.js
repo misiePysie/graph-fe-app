@@ -1,4 +1,4 @@
-import * as css from './css/style.css'; // import global styles
+import * as css from './css/style.css';
 import header from './modules/header/header';
 import footer from './modules/footer/footer';
 import graphNetwork, {graphNetworkScript} from './modules/graphNetwork/graphNetwork';

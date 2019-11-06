@@ -43,3 +43,43 @@
     cursor: pointer;
     box-shadow: 0px 0px 10px #000;
 }
+
+#tabs-wrapper{
+  background-image: linear-gradient(to bottom, #6dc5ff, #2998ff);
+  display: flex;
+  border-radius: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 14px;
+  box-shadow: 3px 3px 30px #000;
+}
+
+#displayWrapper{
+  width:80%;
+}
+
+.tabsButton{
+  margin-right:15px;
+  background-color: #fff;
+  border: none;
+  color: #2998ff;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 30px;
+}
+
+.tabsButton:hover{
+  background-color:#2998ff;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0px 0px 10px #000;
+}
+
+.tabsButtonActive{
+  background-color:#2998ff !important;
+  color: #fff !important;
+  box-shadow: 0px 0px 10px #000 !important;
+  }
+

@@ -22,6 +22,9 @@ const populateGraph = (nodesData, edgesData) => {
   };
 
   const options = {
+    barnesHut: {
+      avoidOverlap: 1
+    },
     nodes: {
       //shape: 'dot',
       color: "#6dc5ff",
@@ -62,15 +65,45 @@ export const graphNetworkScript = () => {
   }
 }
 
+const clearButtonActive = () =>{
+  const graphFilesNetworkButton = document.querySelector("#fileProjectStructureStory");
+  const functionsCallsButton = document.querySelector("#functionCallStory");
+
+  graphFilesNetworkButton.classList.remove("tabsButtonActive");
+  functionsCallsButton.classList.remove("tabsButtonActive");
+}
+
+export const tabsScript = () => {
+  const graphFilesNetworkButton = document.querySelector("#fileProjectStructureStory");
+  const functionsCallsButton = document.querySelector("#functionCallStory");
+  graphFilesNetworkButton.onclick = () => {
+    clearButtonActive();
+    graphFilesNetworkButton.classList.add( "tabsButtonActive");
+  }
+
+  functionsCallsButton.onclick = () => {
+    clearButtonActive();
+    functionsCallsButton.classList.add("tabsButtonActive");
+  }
+}
+
+
+
 const graphNetwork = () => `
 <div id="graphWrapper">
-<div id="graphOptionsWrapper">
-<div> <h4>Options:</h4> </div>
-Frontend App path: <input type="text" id="frontendAppPath"><br>
-Backend App path: <input type="text" id="backendAppPath" name="fname"><br>
-<button id="getProjectStructure"> Get project structure </button>
-</div>
+  <div id="graphOptionsWrapper">
+    <div> <h4>Options:</h4> </div>
+    Frontend App path: <input type="text" id="frontendAppPath"><br>
+    Backend App path: <input type="text" id="backendAppPath" name="fname"><br>
+    <button id="getProjectStructure"> Get project structure </button>
+  </div>
+  <div id="displayWrapper">
+    <div id="tabs-wrapper">
+      <button id="fileProjectStructureStory" class="tabsButton"> File project structure </button>
+      <button id="functionCallStory" class="tabsButton"> Function call </button>
+    </div>
     <div id="projectGraph"></div>
+  </div>
 </div>
 `;
 

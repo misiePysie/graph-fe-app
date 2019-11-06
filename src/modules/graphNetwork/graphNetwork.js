@@ -4,11 +4,19 @@ import http from "../../services/httpService";
 import { mockData, mockData2 } from './mockData';
 import { transformGraphData, pathReformer } from './helpers';
 
+
+let graphVariant = 'fileProjectStructure';
+
 async function getProjectStructureData(){
-  const frontendSrc = document.querySelector("#frontendAppPath").value;
   const backendSrc = document.querySelector("#backendAppPath").value;
-  const srcData = {backendSrc, frontendSrc}
+  const srcData = {backendSrc}
   return await http.post('/dir', srcData);
+}
+
+async function getFunctionsCallsData(){
+  const backendSrc = document.querySelector("#backendAppPath").value;
+  const srcData = {backendSrc}
+  return await http.post('/call', srcData);
 }
 
 const populateGraph = (nodesData, edgesData) => {
@@ -49,9 +57,10 @@ const populateGraph = (nodesData, edgesData) => {
 }
 
 export const graphNetworkScript = () => {
-  const graphNetworkButton = document.querySelector("#getProjectStructure");
+  const getProjectDataButton = document.querySelector("#getProjectData");
 
-  graphNetworkButton.onclick = () => {
+  if(graphVariant === "fileProjectStructure"){
+    getProjectDataButton.onclick = () => {
       getProjectStructureData().then((response)=>{
         const {nodesData, edgesData} = transformGraphData(response.data);
         console.log(response.data);
@@ -63,27 +72,47 @@ export const graphNetworkScript = () => {
         populateGraph(nodesData, edgesData);
       })
   }
+  }
+  else if (graphVariant === "functionCall"){
+    getProjectDataButton.onclick = () => {
+      getFunctionsCallsData().then((response)=>{
+        const {nodesData, edgesData} = transformGraphData(response.data);
+        console.log(response.data);
+        populateGraph(nodesData, edgesData);
+      }, (error)=>{
+        console.error(error);
+        const {nodesData, edgesData} = transformGraphData(mockData);
+        console.log('edges',edgesData);
+        populateGraph(nodesData, edgesData);
+      })
+  }
+  }
+
 }
 
 const clearButtonActive = () =>{
-  const graphFilesNetworkButton = document.querySelector("#fileProjectStructureStory");
-  const functionsCallsButton = document.querySelector("#functionCallStory");
+  const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
+  const functionsCallsButton = document.querySelector("#functionCall");
 
   graphFilesNetworkButton.classList.remove("tabsButtonActive");
   functionsCallsButton.classList.remove("tabsButtonActive");
 }
 
 export const tabsScript = () => {
-  const graphFilesNetworkButton = document.querySelector("#fileProjectStructureStory");
-  const functionsCallsButton = document.querySelector("#functionCallStory");
+  const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
+  const functionsCallsButton = document.querySelector("#functionCall");
   graphFilesNetworkButton.onclick = () => {
     clearButtonActive();
+    graphVariant = 'fileProjectStructure';
     graphFilesNetworkButton.classList.add( "tabsButtonActive");
+    graphNetworkScript();
   }
 
   functionsCallsButton.onclick = () => {
     clearButtonActive();
+    graphVariant = 'functionCall';
     functionsCallsButton.classList.add("tabsButtonActive");
+    graphNetworkScript();
   }
 }
 
@@ -93,14 +122,13 @@ const graphNetwork = () => `
 <div id="graphWrapper">
   <div id="graphOptionsWrapper">
     <div> <h4>Options:</h4> </div>
-    Frontend App path: <input type="text" id="frontendAppPath"><br>
-    Backend App path: <input type="text" id="backendAppPath" name="fname"><br>
-    <button id="getProjectStructure"> Get project structure </button>
+     App path: <input type="text" id="backendAppPath" name="fname"><br>
+    <button id="getProjectData"> Get project structure </button>
   </div>
   <div id="displayWrapper">
     <div id="tabs-wrapper">
-      <button id="fileProjectStructureStory" class="tabsButton"> File project structure </button>
-      <button id="functionCallStory" class="tabsButton"> Function call </button>
+      <button id="fileProjectStructure" class="tabsButton tabsButtonActive"> File project structure </button>
+      <button id="functionCall" class="tabsButton"> Function call </button>
     </div>
     <div id="projectGraph"></div>
   </div>

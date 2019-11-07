@@ -8,8 +8,9 @@ import { transformGraphData, pathReformer, transformGraphFunctionsCallsData } fr
 let graphVariant = 'fileProjectStructure';
 
 async function getProjectStructureData(){
-  const backendSrc = document.querySelector("#backendAppPath").value;
-  const srcData = {backendSrc}
+  const frontendSrc = pathReformer(document.querySelector("#backendAppPath").value);
+  const backendSrc = pathReformer(document.querySelector("#backendAppPath").value);
+  const srcData = {backendSrc, frontendSrc}
   return await http.post('/dir', srcData);
 }
 

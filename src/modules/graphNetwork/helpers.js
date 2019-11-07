@@ -16,7 +16,7 @@ export const transformGraphData = (data) => {
     
     const {nodesData, edgesData} = data;
 
-    const nodesDataTransformed = nodesData.map(node => ({
+    const nodesDataTransformedDuplicated = nodesData.map(node => ({
         id: node.id,
         label: `${node.label} size:${node.fileSize}B`,
         heightConstraint: {minimum: node.size, maximum:100}, 
@@ -28,7 +28,7 @@ export const transformGraphData = (data) => {
         to: edge.to,
         label: edge.weight.toString(),
     }))
-
+    const nodesDataTransformed = getUnique(nodesDataTransformedDuplicated, 'id'); 
    return {nodesData: nodesDataTransformed, edgesData: edgesDataTransformed}
 }
 

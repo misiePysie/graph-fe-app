@@ -1,3 +1,17 @@
+function getUnique(arr, comp) {
+
+    const unique = arr
+         .map(e => e[comp])
+  
+       // store the keys of the unique objects
+      .map((e, i, final) => final.indexOf(e) === i && i)
+  
+      // eliminate the dead keys & store unique objects
+      .filter(e => arr[e]).map(e => arr[e]);
+  
+     return unique;
+  }
+
 export const transformGraphData = (data) => {
     
     const {nodesData, edgesData} = data;
@@ -14,6 +28,40 @@ export const transformGraphData = (data) => {
         to: edge.to,
         label: edge.weight.toString(),
     }))
+
+   return {nodesData: nodesDataTransformed, edgesData: edgesDataTransformed}
+}
+
+
+export const transformGraphFunctionsCallsData = (data) => {
+    
+    const {methodsToArray, methodsFromArray, edgesOfMethods} = data;
+
+    const nodesData = [...methodsToArray,...methodsFromArray];
+
+    const nodesDataTransformedDuplicated = nodesData.map(node => ({
+        id: node,
+        label: `${node}`,
+        heightConstraint: {minimum: node.size, maximum:100}, 
+        widthConstraint: {minimum: node.size, maximum:100}
+    }));
+
+    const nodesDataTransformed = getUnique(nodesDataTransformedDuplicated, 'id'); 
+    console.log( nodesDataTransformed);
+
+    
+
+    const edgesDataTransformed = edgesOfMethods.map(edge => {
+     
+        return(
+            {
+                from: edge.from,
+                to: edge.to,
+                label: "xD",
+            }
+        )
+    }
+       )
 
    return {nodesData: nodesDataTransformed, edgesData: edgesDataTransformed}
 }

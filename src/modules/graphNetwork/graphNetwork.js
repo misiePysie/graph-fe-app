@@ -2,7 +2,7 @@ import * as css from './style.css';
 import * as vis from 'vis-network';
 import http from "../../services/httpService";
 import { mockData, mockData2 } from './mockData';
-import { transformGraphData, pathReformer } from './helpers';
+import { transformGraphData, pathReformer, transformGraphFunctionsCallsData } from './helpers';
 
 
 let graphVariant = 'fileProjectStructure';
@@ -14,9 +14,9 @@ async function getProjectStructureData(){
 }
 
 async function getFunctionsCallsData(){
-  const backendSrc = document.querySelector("#backendAppPath").value;
-  const srcData = {backendSrc}
-  return await http.post('/call', srcData);
+  const path = pathReformer(document.querySelector("#backendAppPath").value);
+  console.log({path})
+  return await http.post('/calls', {path});
 }
 
 const populateGraph = (nodesData, edgesData) => {
@@ -30,9 +30,6 @@ const populateGraph = (nodesData, edgesData) => {
   };
 
   const options = {
-    barnesHut: {
-      avoidOverlap: 1
-    },
     nodes: {
       //shape: 'dot',
       color: "#6dc5ff",
@@ -64,6 +61,7 @@ export const graphNetworkScript = () => {
       getProjectStructureData().then((response)=>{
         const {nodesData, edgesData} = transformGraphData(response.data);
         console.log(response.data);
+       
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);
@@ -76,8 +74,9 @@ export const graphNetworkScript = () => {
   else if (graphVariant === "functionCall"){
     getProjectDataButton.onclick = () => {
       getFunctionsCallsData().then((response)=>{
-        const {nodesData, edgesData} = transformGraphData(response.data);
-        console.log(response.data);
+        const {nodesData, edgesData} = transformGraphFunctionsCallsData(response.data);
+        console.log('nodes:',nodesData);
+        console.log("edgesData:",edgesData);
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);

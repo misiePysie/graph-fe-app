@@ -57,7 +57,7 @@ export const transformGraphFunctionsCallsData = (data) => {
             {
                 from: edge.from,
                 to: edge.to,
-                label: edge.label,
+                label: edge.weight.toString(),
             }
         )
     }

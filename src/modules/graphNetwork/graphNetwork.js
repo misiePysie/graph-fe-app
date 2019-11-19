@@ -20,6 +20,12 @@ async function getFunctionsCallsData(){
   return await http.post('/calls', {path});
 }
 
+async function getModulesData(){
+  const path = pathReformer(document.querySelector("#backendAppPath").value);
+  console.log({path})
+  return await http.post('/modules', {path});
+}
+
 const populateGraph = (nodesData, edgesData) => {
   const container = document.getElementById('projectGraph');
   const nodes = new vis.DataSet(nodesData);
@@ -62,7 +68,6 @@ export const graphNetworkScript = () => {
       getProjectStructureData().then((response)=>{
         const {nodesData, edgesData} = transformGraphData(response.data);
         console.log(response.data);
-       
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);
@@ -70,14 +75,14 @@ export const graphNetworkScript = () => {
         console.log('edges',edgesData);
         populateGraph(nodesData, edgesData);
       })
-  }
+    }
   }
   else if (graphVariant === "functionCall"){
     getProjectDataButton.onclick = () => {
       getFunctionsCallsData().then((response)=>{
         const {nodesData, edgesData} = transformGraphFunctionsCallsData(response.data);
         console.log('nodes:',nodesData);
-        console.log("edgesData:",edgesData);
+        console.log("edges:",edgesData);
         populateGraph(nodesData, edgesData);
       }, (error)=>{
         console.error(error);
@@ -85,22 +90,40 @@ export const graphNetworkScript = () => {
         console.log('edges',edgesData);
         populateGraph(nodesData, edgesData);
       })
+    }
   }
+  else if (graphVariant === "modules"){
+    getProjectDataButton.onclick = () => {
+      getModulesData().then((response)=>{
+        const {nodesData, edgesData} = transformGraphModulesData(response.data);
+        console.log('nodes:',nodesData);
+        console.log("edges:",edgesData);
+        populateGraph(nodesData, edgesData);
+      }, (error)=>{
+        console.error(error);
+        const {nodesData, edgesData} = transformGraphData(mockData);
+        console.log('edges',edgesData);
+        populateGraph(nodesData, edgesData);
+      })
+    }
   }
-
 }
 
 const clearButtonActive = () =>{
   const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
   const functionsCallsButton = document.querySelector("#functionCall");
+  const modulesButton = document.querySelector("#modules");
 
   graphFilesNetworkButton.classList.remove("tabsButtonActive");
   functionsCallsButton.classList.remove("tabsButtonActive");
+  modulesButton.classList.remove("tabsButtonActive");
 }
 
 export const tabsScript = () => {
   const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
   const functionsCallsButton = document.querySelector("#functionCall");
+  const modulesButton = document.querySelector("#modules");
+
   graphFilesNetworkButton.onclick = () => {
     clearButtonActive();
     graphVariant = 'fileProjectStructure';
@@ -112,6 +135,13 @@ export const tabsScript = () => {
     clearButtonActive();
     graphVariant = 'functionCall';
     functionsCallsButton.classList.add("tabsButtonActive");
+    graphNetworkScript();
+  }
+
+  modulesButton.onclick = () => {
+    clearButtonActive();
+    graphVariant = 'modules';
+    modulesButton.classList.add("tabsButtonActive");
     graphNetworkScript();
   }
 }
@@ -127,8 +157,9 @@ const graphNetwork = () => `
   </div>
   <div id="displayWrapper">
     <div id="tabs-wrapper">
-      <button id="fileProjectStructure" class="tabsButton tabsButtonActive"> File project structure </button>
-      <button id="functionCall" class="tabsButton"> Function call </button>
+      <button id="fileProjectStructure" class="tabsButton tabsButtonActive"> Project file structure </button>
+      <button id="functionCall" class="tabsButton"> Function calls </button>
+      <button id="modules" class="tabsButton"> Modules </button>
     </div>
     <div id="projectGraph"></div>
   </div>

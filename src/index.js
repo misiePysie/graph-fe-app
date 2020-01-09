@@ -2,7 +2,7 @@ import * as css from './css/style.css';
 import header from './modules/header/header';
 import footer from './modules/footer/footer';
 import graphNetwork, {graphNetworkScript} from './modules/graphNetwork/graphNetwork';
-import { tabsScript } from './modules/graphNetwork/storyTabsSwitcherLogic';
+import { tabsScript, inputsWrappersScripts } from './modules/graphNetwork/storyTabsSwitcherLogic';
 const app = document.getElementById("root"); 
 
 // define modules UI

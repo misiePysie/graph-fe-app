@@ -1,15 +1,15 @@
 import axios from "axios";
 
-if(process.env.APP_API_URI){
+if (process.env.APP_API_URI) {
   axios.defaults.baseURL = process.env.APP_API_URI;
-} else{
+} else {
   axios.defaults.baseURL = "http://localhost:3030"; //TODO: change api URL when api releases
 }
 
 axios.interceptors.response.use((response) => {
   return response;
 }, (error) => {
-alert(error)
+  alert(error)
   // Do something with response error
   const expectedError =
     error.response &&
@@ -19,11 +19,11 @@ alert(error)
   if (!expectedError) {
   } else {
     switch (error.response.status) {
-      case 401 :   alert("You are not authorized!");
+      case 401: alert("You are not authorized!");
         break;
-      case 400 :    alert("Wrong API path!");
+      case 400: alert("Wrong API path!");
         break;
-      case 404 :    alert("api path not exist!");
+      case 404: alert("api path not exist!");
         break;
       default:
         alert(`An error occurred. ${error}`);

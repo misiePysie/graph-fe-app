@@ -19,6 +19,18 @@ export async function postProcessApp() {
   }
 }
 
+export async function getCommitHash() {
+  try {
+    setIsLoading(true);
+    const res = await http.get('/commitHash');
+    setIsLoading(false);
+    return res;
+  }
+  catch (e) {
+    setIsLoading(false);
+    throw (e);
+  }
+}
 
 export async function getProjectStructureData() {
   try {

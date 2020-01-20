@@ -1,4 +1,5 @@
 import { setGraphVariant, graphNetworkScript } from './graphNetwork';
+import { getCommitHash } from './requests';
 
 export const clearButtonActive = () => {
     const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
@@ -31,6 +32,11 @@ export const tabsScript = () => {
 
     const graphOptionsWrapper = document.querySelector("#graphOptionsWrapper");
     const modulesFilesMethodsInputWrapper = document.querySelector("#graphOptionsWrapper-modules-files-methods");
+    const commit = document.querySelector("#commit");
+
+    commit.onclick = () => {
+        getCommitHash();
+    }
 
     graphFilesNetworkButton.onclick = () => {
         hideInputWrappers();

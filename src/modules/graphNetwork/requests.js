@@ -24,6 +24,7 @@ export async function getCommitHash() {
     setIsLoading(true);
     const res = await http.get('/commitHash');
     setIsLoading(false);
+    document.getElementById("commitField").innerHTML=res.data;
     return res;
   }
   catch (e) {

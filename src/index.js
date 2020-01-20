@@ -13,6 +13,7 @@ app.innerHTML = `
         'GRAPH',
         'by Misie Pysie'
     )}
+    <div id="commitField"> </div>
     ${graphNetwork()}
 
     ${footer(

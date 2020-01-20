@@ -197,6 +197,7 @@ App path: <input type="text" value="C:\\Users\\karol\\Documents\\1.SEMESTR_5_PRO
       <button id="modules" class="tabsButton"> Modules </button>
       <button id="file_method" class="tabsButton"> file_method </button>
       <button id="modules-files-methods" class="tabsButton"> Files & Methods & Modules  </button>
+      <button id="commit" class="tabsButton"> Commit  </button>
     </div>
     <div id="loader" class="displayNone" ><div id="loaderCat"></div></div>
     <div id="projectGraph"></div>

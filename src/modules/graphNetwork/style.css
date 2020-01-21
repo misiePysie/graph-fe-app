@@ -148,3 +148,11 @@
 .pointer:hover{
   cursor: pointer;
 }
+
+#commitField{
+  text-align: center;
+    color: #2998ff;
+    background-color: #393e46;
+    font-size: 16px;
+    padding-bottom: 15px;
+}

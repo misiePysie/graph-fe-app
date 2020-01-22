@@ -195,7 +195,7 @@ App path: <input type="text" value="C:\\Users\\karol\\Documents\\1.SEMESTR_5_PRO
       <button id="fileProjectStructure" class="tabsButton"> Project file structure </button>
       <button id="functionCall" class="tabsButton"> Function calls </button>
       <button id="modules" class="tabsButton"> Modules </button>
-      <button id="file_method" class="tabsButton"> file_method </button>
+      <button id="file_method" class="tabsButton"> Methods </button>
       <button id="modules-files-methods" class="tabsButton"> Files & Methods & Modules  </button>
       <button id="commit" class="tabsButton"> Version  </button>
     </div>

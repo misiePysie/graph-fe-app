@@ -29,6 +29,7 @@ export async function getCommitHash() {
   }
   catch (e) {
     setIsLoading(false);
+    document.getElementById("commitField").innerHTML = "GIT Commit Hash: uknown";
     throw (e);
   }
 }
@@ -62,6 +63,18 @@ export async function getModulesData() {
   try {
     setIsLoading(true);
     const res = await http.get('/package_package');
+    setIsLoading(false);
+    return res;
+  } catch (e) {
+    setIsLoading(false);
+    throw (e);
+  }
+}
+
+export async function getMethodPackageData() {
+  try {
+    setIsLoading(true);
+    const res = await http.get('/method_package');
     setIsLoading(false);
     return res;
   } catch (e) {

@@ -5,12 +5,14 @@ export const clearButtonActive = () => {
     const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
     const functionsCallsButton = document.querySelector("#functionCall");
     const modulesButton = document.querySelector("#modules");
+    const methodPackageButton = document.querySelector("#methodPackage");
     const modulesFilesMethods = document.querySelector("#modules-files-methods");
     const file_method = document.querySelector("#file_method");
 
     graphFilesNetworkButton.classList.remove("tabsButtonActive");
     functionsCallsButton.classList.remove("tabsButtonActive");
     modulesButton.classList.remove("tabsButtonActive");
+    methodPackageButton.classList.remove("tabsButtonActive");
     modulesFilesMethods.classList.remove("tabsButtonActive");
     file_method.classList.remove("tabsButtonActive");
 }
@@ -27,6 +29,7 @@ export const tabsScript = () => {
     const graphFilesNetworkButton = document.querySelector("#fileProjectStructure");
     const functionsCallsButton = document.querySelector("#functionCall");
     const modulesButton = document.querySelector("#modules");
+    const methodPackageButton = document.querySelector("#methodPackage");
     const modulesFilesMethods =  document.querySelector("#modules-files-methods");
     const file_method = document.querySelector("#file_method");
 
@@ -61,6 +64,15 @@ export const tabsScript = () => {
         clearButtonActive();
         setGraphVariant('modules');
         modulesButton.classList.add("tabsButtonActive");
+        graphOptionsWrapper.classList.add("inputWrapperActive");
+        graphNetworkScript();
+    }
+
+    methodPackageButton.onclick = () => {
+        hideInputWrappers();
+        clearButtonActive();
+        setGraphVariant('methodPackage');
+        methodPackageButton.classList.add("tabsButtonActive");
         graphOptionsWrapper.classList.add("inputWrapperActive");
         graphNetworkScript();
     }

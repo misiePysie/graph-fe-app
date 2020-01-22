@@ -1,6 +1,6 @@
 import { mockData, mockData2 } from './mockData';
 import { transformGraphData, pathReformer, transformGraphFunctionsCallsData } from './helpers';
-import { getProjectStructureData, getFunctionsCallsData, getModulesData, getModulesFilesMethodsData, postProcessApp, fetchConvertAndDownloadFile, getFileMethod } from './requests';
+import { getProjectStructureData, getFunctionsCallsData, getModulesData, getModulesFilesMethodsData, postProcessApp, fetchConvertAndDownloadFile, getFileMethod, getMethodPackageData } from './requests';
 import { populateGraph } from './populateGraph';
 let file_file_checkbox;
 let module_module;
@@ -51,6 +51,18 @@ export const setGraphVariant = async (variant) => {
   }
   else if (graphVariant === "modules") {
     getModulesData().then((response) => {
+      const { nodesData, edgesData } = transformGraphData(response.data);
+      console.log('nodes:', nodesData);
+      console.log("edges:", edgesData);
+      populateGraph(nodesData, edgesData);
+    }, (error) => {
+      console.error(error);
+      alert('Error');
+      clearGraph();
+    })
+  }
+  else if (graphVariant === "methodPackage") {
+    getMethodPackageData().then((response) => {
       const { nodesData, edgesData } = transformGraphData(response.data);
       console.log('nodes:', nodesData);
       console.log("edges:", edgesData);
@@ -192,6 +204,7 @@ App path: <br><br><input type="text" id="appPath" name="fname" size="30"><br>
       <button id="functionCall" class="tabsButton"> Function calls </button>
       <button id="modules" class="tabsButton"> Modules </button>
       <button id="file_method" class="tabsButton"> Methods </button>
+      <button id="methodPackage" class="tabsButton"> Method-Package </button>
       <button id="modules-files-methods" class="tabsButton"> Files & Methods & Modules  </button>
       <button id="commit" class="tabsButton"> Version  </button>
     </div>

@@ -16,9 +16,12 @@ export const populateGraph = (nodesData, edgesData) => {
             //shape: 'dot',
             color: "#6dc5ff",
             font: "16px arial white",
-            borderWidth: 1
+            borderWidth: 1//,
+            // avoidOverlap: 1,
+            // springLength: 300
         },
         edges: {
+            smooth: false,
             color: "#2998ff",
             font: {
                 color: "#ffffff",
@@ -29,7 +32,18 @@ export const populateGraph = (nodesData, edgesData) => {
             }
         },
         physics: {
-            enabled: false
+            enabled: true,
+            maxVelocity: 200,
+            minVelocity: 1,
+            barnesHut: {
+                gravitationalConstant: -5000,
+                springLength: 200,
+                springConstant: 0.3,
+                avoidOverlap: 1,
+                centralGravity: 0,
+                damping: 1
+            }
+    
         }
     };
     const network = new vis.Network(container, data, options);

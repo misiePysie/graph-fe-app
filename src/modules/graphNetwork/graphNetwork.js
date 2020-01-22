@@ -105,16 +105,30 @@ export const setGraphVariant = async (variant) => {
         }
 
         if (module_module.checked) {
-          displayData = {
-            nodes: [...displayData.nodes, ...filesModelsMethodsData.modules_modules_result.nodes],
-            edges: [...displayData.edges, ...filesModelsMethodsData.modules_modules_result.edges]
+          if (method_package.checked){
+            displayData = {
+              nodes: [...displayData.nodes],
+              edges: [...displayData.edges, ...filesModelsMethodsData.modules_modules_result.edges]
+            }
+          }else{
+            displayData = {
+              nodes: [...displayData.nodes, ...filesModelsMethodsData.modules_modules_result.nodes],
+              edges: [...displayData.edges, ...filesModelsMethodsData.modules_modules_result.edges]
+            }
           }
         }
 
         if (methods_methods.checked) {
-          displayData = {
-            nodes: [...displayData.nodes, ...filesModelsMethodsData.function_function_result.nodes],
-            edges: [...displayData.edges, ...filesModelsMethodsData.function_function_result.edges]
+          if (method_package.checked){
+            displayData = {
+              nodes: [...displayData.nodes],
+              edges: [...displayData.edges, ...filesModelsMethodsData.function_function_result.edges]
+            }
+          }else{
+            displayData = {
+              nodes: [...displayData.nodes, ...filesModelsMethodsData.function_function_result.nodes],
+              edges: [...displayData.edges, ...filesModelsMethodsData.function_function_result.edges]
+            }
           }
         }
 
@@ -125,6 +139,8 @@ export const setGraphVariant = async (variant) => {
           }
         }
 
+        
+      
         console.log('displayData', displayData)
         const { nodesData, edgesData } = transformGraphData(displayData);
         console.log('nodes:', nodesData);
@@ -190,8 +206,8 @@ App path: <br><br><input type="text" id="appPath" name="fname" size="30"><br>
   <div id="graphOptionsWrapper-modules-files-methods" class="optionsWrapper">
     <div> <br><br><br><h4>Options:</h4> </div>
      <div class="checkboxWrapper"> Files graph:  <input class="checkbox" type="checkbox" id="file_file_checkbox" name="files_files" value="files_files">  </div>
-     <div class="checkboxWrapper"> Modules graph:  <input class="checkbox" type="checkbox" id="module_module_checkbox" name="methods_methods" value="methods_methods">  </div>
      <div class="checkboxWrapper"> Methods graph:  <input class="checkbox"type="checkbox" id="methods_methods" name="modules_modules" value="modules_modules">  </div>
+     <div class="checkboxWrapper"> Modules graph:  <input class="checkbox" type="checkbox" id="module_module_checkbox" name="methods_methods" value="methods_methods">  </div>
      <div class="checkboxWrapper"> Method-Package graph:  <input class="checkbox"type="checkbox" id="method_package" name="method_package" value="method_package">  </div>
      <br>
   </div>

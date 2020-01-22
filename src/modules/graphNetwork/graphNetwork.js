@@ -162,33 +162,29 @@ export const graphNetworkScript = async () => {
 const graphNetwork = () => `
 <div id="graphWrapper">
 <div class="inputOptionsWrapper">
-App path: <input type="text" value="C:\\Users\\karol\\Documents\\1.SEMESTR_5_PROJECTS\\IO\\graph-be-JavaParser\\src\\main\\java" id="appPath" name="fname"><br>
+App path: <br><br><input type="text" id="appPath" name="fname" size="30"><br>
 <br/>
 <button class="getProjectDataButton" id="processProject"> Process for this path </button>
 
-  <div id="graphOptionsWrapper" class="inputWrapperActive optionsWrapper">
-    <div> <h4>Options:</h4> </div>
-  </div>
+<div id="graphOptionsWrapper" class="inputWrapperActive optionsWrapper">
+<div>  </div>
+</div>
 
   <div id="graphOptionsWrapper-modules-files-methods" class="optionsWrapper">
-    <div> <h4>Options:</h4> </div>
-     <div class="checkboxWrapper"> file to file graph <br/> <input class="checkbox" type="checkbox" id="file_file_checkbox" name="files_files" value="files_files">  <br></div>
-     <div class="checkboxWrapper"> module to module graph  <br/> <input class="checkbox" type="checkbox" id="module_module_checkbox" name="methods_methods" value="methods_methods">  </div>
-     <div class="checkboxWrapper">  method to method graph <br/> <input class="checkbox"type="checkbox" id="methods_methods" name="modules_modules" value="modules_modules">  </div>
+    <div> <br><br><br><h4>Options:</h4> </div>
+     <div class="checkboxWrapper"> Files graph:  <input class="checkbox" type="checkbox" id="file_file_checkbox" name="files_files" value="files_files">  <br></div>
+     <div class="checkboxWrapper"> Modules graph:  <input class="checkbox" type="checkbox" id="module_module_checkbox" name="methods_methods" value="methods_methods">  </div>
+     <div class="checkboxWrapper"> Methods graph:  <input class="checkbox"type="checkbox" id="methods_methods" name="modules_modules" value="modules_modules">  <br></div>
+     <br>
   </div>
 
   <div id="download-xml-wrapper" class="optionsWrapper inputWrapperActive">
-    <div> <h4>Download files:</h4> </div>
-
-    <h3 class="pointer" id="download_export_modules">download export_modules</h3>
-    <h3 class="pointer" id="download_export_files">download export_files</h3>
-    <h3 class="pointer" id="download_export_packages">download export_packages</h3>
-
-   
+    <div> <br><br><br><h4>Download files:</h4> </div>
+    <h5 class="pointer" id="download_export_files">Files XML</h5>
+    <h5 class="pointer" id="download_export_modules">Modules XML</h5>
+    <h5 class="pointer" id="download_export_packages">Methods XML</h5>
   </div>
 
-
-  
   </div>
   <div id="displayWrapper">
     <div id="tabs-wrapper">

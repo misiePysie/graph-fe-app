@@ -10,7 +10,6 @@ const header = (id, title, content) => {
         </div>
            `
     );
-    
 } 
 
 export default header;

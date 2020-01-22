@@ -93,39 +93,4 @@ export const tabsScript = () => {
         graphOptionsWrapper.classList.add("inputWrapperActive");
         graphNetworkScript();
     }
-
-
-
-    // graphWrapper.onclick = () => {
-    //     clearButtonActive();
-    //     setGraphVariant('graphWrapper');
-    //     graphWrapper.classList.add("tabsButtonActive");
-    //     graphNetworkScript();
-    // }
-
-    // modulesFilesMethodsInputWrapper.onclick = () => {
-    //     clearButtonActive();
-    //     setGraphVariant('modules-files-methods');
-    //     modulesFilesMethods.classList.add("tabsButtonActive");
-    //     graphNetworkScript();
-    // }
 }
-
-// export const inputsWrappersScripts = () => {
-//     const graphWrapper = document.querySelector("#fileProjectStructure");
-//     const modulesFilesMethodsInputWrapper = document.querySelector("#functionCall");
-
-//     graphWrapper.onclick = () => {
-//         clearButtonActive();
-//         setGraphVariant('modules');
-//         graphWrapper.classList.add("tabsButtonActive");
-//         graphNetworkScript();
-//     }
-
-//     modulesFilesMethodsInputWrapper.onclick = () => {
-//         clearButtonActive();
-//         setGraphVariant('modules-files-methods');
-//         modulesFilesMethods.classList.add("tabsButtonActive");
-//         graphNetworkScript();
-//     }
-// }

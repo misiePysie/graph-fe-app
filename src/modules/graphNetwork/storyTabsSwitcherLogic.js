@@ -32,7 +32,6 @@ export const tabsScript = () => {
     const methodPackageButton = document.querySelector("#methodPackage");
     const modulesFilesMethods =  document.querySelector("#modules-files-methods");
     const file_method = document.querySelector("#file_method");
-
     const graphOptionsWrapper = document.querySelector("#graphOptionsWrapper");
     const modulesFilesMethodsInputWrapper = document.querySelector("#graphOptionsWrapper-modules-files-methods");
     const commit = document.querySelector("#commit");

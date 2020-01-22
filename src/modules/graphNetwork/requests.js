@@ -89,11 +89,13 @@ export const getModulesFilesMethodsData = () => new Promise(async (resolve, reje
     const function_function_result = await getFunctionsCallsData();
     const file_file_result = await getProjectStructureData();
     const modules_modules_result = await getModulesData();
+    const method_package_result = await getMethodPackageData();
     setIsLoading(false);
     resolve({
       function_function_result: function_function_result.data,
       file_file_result: file_file_result.data,
-      modules_modules_result: modules_modules_result.data
+      modules_modules_result: modules_modules_result.data,
+      method_package_result: method_package_result.data
     });
   } catch (e) {
     setIsLoading(false);

@@ -35,9 +35,9 @@ export const populateGraph = (nodesData, edgesData) => {
             barnesHut: {
                 gravitationalConstant: -5000,
                 springLength: 300,
-                springConstant: 0.3,
+                springConstant: 0.05,
                 avoidOverlap: 1,
-                centralGravity: 0,
+                centralGravity: 0.5,
                 damping: 1
             }
         }
